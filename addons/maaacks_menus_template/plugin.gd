@@ -153,6 +153,7 @@ func _set_default_project_paths() -> void:
 func update_project_paths() -> void:
 	var copy_path := get_copy_path()
 	MaaacksMenusTemplate.set_project_paths(copy_path)
+	MaaacksSceneLoader.set_project_paths(copy_path)
 
 func _add_translations() -> void:
 	var dir := DirAccess.open("res://")
@@ -167,7 +168,7 @@ func are_project_paths_updated() -> bool:
 	var copy_path := get_copy_path()
 	if copy_path == get_plugin_examples_path():
 		return false
-	return MaaacksMenusTemplate.are_project_paths_updated(copy_path)
+	return MaaacksMenusTemplate.are_project_paths_updated(copy_path) and MaaacksSceneLoader.are_project_paths_updated(copy_path)
 
 func _on_completed_copy_to_directory(target_path : String) -> void:
 	MaaacksMenusTemplate.set_copy_path(target_path)
